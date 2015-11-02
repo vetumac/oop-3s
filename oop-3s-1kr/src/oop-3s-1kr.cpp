@@ -44,10 +44,10 @@ char* Word::getWord() {
 }
 
 void Word::out() {
-	cout<<"Word: "<<word<<endl;
-	cout<<"Pages with word count: "<<pagesCount<<endl;
+	cout << "Word: " << word << endl;
+	cout << "Pages with word count: " << pagesCount << endl;
 	for (int i = 0; i < pagesCount; i++) {
-		cout<<"Pages with word count: "<<pages[i]<<" ";
+		cout << "Pages with word count: " << pages[i] << " " << endl;
 	}
 	cout<<endl<<endl;
 }
@@ -65,7 +65,7 @@ int Word::compareTo(Word thatWord) {
 		if (word[i] > thatWord.word[i]) return 1;
 		i++;
 	}
-	return 0;
+	return  0;
 }
 
 void quickSort(Word a[], int first, int last)
@@ -90,7 +90,7 @@ void quickSort(Word a[], int first, int last)
 
 int main() {
 	int wordsCount;
-	cout<<"Input word count: "; cin>>wordsCount;
+	cout << "Input word count: " << endl; cin>>wordsCount;
 
 	Word *words;
 	words = new Word[wordsCount];
@@ -98,7 +98,7 @@ int main() {
 	int minPageCount;
 	cout<<"Input minimum page with word count (N) <= 10: "; cin>>minPageCount;
 
-	cout<<"Words in more then N pages:"<<endl;
+	cout << "Words in more then N pages:" << endl;
 	for (int i = 0; i < wordsCount; i++) {
 		if (words[i].getPagesCount() > minPageCount) {
 			words[i].out();
