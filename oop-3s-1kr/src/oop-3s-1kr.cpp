@@ -7,6 +7,7 @@
 //============================================================================
 
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 class Word {
@@ -19,6 +20,7 @@ public:
 	int getPagesCount();
 	char* getWord();
 	void out();
+	int compareTo(Word);
 };
 
 Word::Word() {
@@ -50,6 +52,42 @@ void Word::out() {
 	cout<<endl<<endl;
 }
 
+int Word::compareTo(Word thatWord) {
+	int thatWordLen = strlen(thatWord.word);
+	int thisWordLen = strlen(word);
+
+	if (thisWordLen < thatWordLen) return -1;
+	if (thisWordLen > thatWordLen) return 1;
+
+	int i = 0;
+	while (i < thisWordLen && i < thatWordLen) {
+		if (word[i] < thatWord.word[i]) return -1;
+		if (word[i] > thatWord.word[i]) return 1;
+		i++;
+	}
+	return 0;
+}
+
+void quickSort(Word a[], int first, int last)
+{
+    int i = first, j = last;
+    Word x = a[(first + last) / 2];
+    do {
+        while (a[i].compareTo(x) < 0) i++;
+        while (a[j].compareTo(x) > 0) j--;
+
+        if(i <= j) {
+            if (i < j) swap(a[i], a[j]);
+            i++;
+            j--;
+        }
+    } while (i <= j);
+    if (i < last)
+        quickSort(a, i, last);
+    if (first < j)
+        quickSort(a, first, j);
+}
+
 int main() {
 	int wordsCount;
 	cout<<"Input word count: "; cin>>wordsCount;
@@ -65,6 +103,12 @@ int main() {
 		if (words[i].getPagesCount() > minPageCount) {
 			words[i].out();
 		}
+	}
+
+	quickSort(words, 0, wordsCount);
+
+	for (int i = 0; i < wordsCount; i++) {
+		words[i].out();
 	}
 
 	return 0;
