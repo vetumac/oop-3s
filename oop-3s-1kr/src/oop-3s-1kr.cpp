@@ -11,7 +11,7 @@
 using namespace std;
 
 class Word {
-	char word[];
+	char word[4];
 	int pages[10];
 	int pagesCount;
 public:
@@ -24,10 +24,13 @@ public:
 };
 
 Word::Word() {
-	cout<<"Input word: "; cin>>word;
-	cout<<"Input pages with word count <= 10: "; cin>>pagesCount;
+	cout << "Input word: " << endl;
+	cin >> word;
+	cout << "Input pages with word count <= 10: " << endl;
+	cin >> pagesCount;
 	for (int i = 0; i < pagesCount; i++) {
-		cout<<"Input pages with word count"; cin>>pages[i];
+		cout << "Input pages with word count" << endl;
+		cin >> pages[i];
 	}
 }
 
@@ -96,7 +99,8 @@ int main() {
 	words = new Word[wordsCount];
 
 	int minPageCount;
-	cout<<"Input minimum page with word count (N) <= 10: "; cin>>minPageCount;
+	cout << "Input minimum page with word count (N) <= 10: " << endl;
+	cin >> minPageCount;
 
 	cout << "Words in more then N pages:" << endl;
 	for (int i = 0; i < wordsCount; i++) {
@@ -105,7 +109,7 @@ int main() {
 		}
 	}
 
-	quickSort(words, 0, wordsCount);
+	quickSort(words, 0, wordsCount - 1);
 
 	for (int i = 0; i < wordsCount; i++) {
 		words[i].out();
@@ -113,5 +117,3 @@ int main() {
 
 	return 0;
 }
-
-
